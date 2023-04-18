@@ -1,10 +1,25 @@
 import { LitElement, html, css } from 'lit';
 import '@lrnwebcomponents/simple-icon/simple-icon.js';
 import '@lrnwebcomponents/simple-icon/lib/simple-icons.js';
+import "@lrnwebcomponents/a11y-collapse/a11y-collapse.js";
+import "@lrnwebcomponents/a11y-collapse/lib/a11y-collapse-group.js";
+import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 class WeekElement extends LitElement {
   static properties = {
-    bonk: { type: String },
+    weekNumber: { type: String },
+    hours: { type: Number },
+    badgeTitle: { type: String },
+    badgeDescription: { type: String },
+    activityArray: { type: Array },
+    lessonText: { type: String },
+    lessonDescription: { type: String },
+    videoCount: { type: Number },
+    videoMinCount: { type: Number },
+    readingCount: { type: Number },
+    quizCount: { type: Number },
+    detailsTitle: { type: String },
+    opened: { type: Boolean },
   };
 
   static styles = css`
@@ -15,6 +30,7 @@ class WeekElement extends LitElement {
       color: black;
       font-weight: 400;
       vertical-align: middle;
+      background-color: black;
     }
 
     div {
@@ -23,11 +39,10 @@ class WeekElement extends LitElement {
     .wrapper {
       display: block;
       color: #000000;
-      width: 1600px;
-      height: 340px;
       margin-left: auto;
       margin-right: auto;
       vertical-align: middle;
+      margin-bottom: 30px;
     }
 
     .left-stack {
@@ -36,7 +51,8 @@ class WeekElement extends LitElement {
       width: 30%;
       height: 340px;
       text-align: center;
-      background-color: #e7ffb9c9;
+      background-color: #0072CE;
+      color: white;
       margin: auto;
       vertical-align: middle;
     }
@@ -46,10 +62,12 @@ class WeekElement extends LitElement {
       float: right;
       width: 70%;
       height: 340px;
-      background-color: #e7ffb9c9;
+      background-color: #0072CE;
+      color: white;
       text-align: left;
       margin: auto;
       vertical-align: middle;
+    
     }
 
     .hours-text {
@@ -58,7 +76,7 @@ class WeekElement extends LitElement {
       font-weight: bold;
       padding-top: 30px;
       padding-left: 10px;
-      color: #414141;
+      /* color: #414141; */
     }
 
     .lesson-title {
@@ -116,12 +134,76 @@ class WeekElement extends LitElement {
     }
 
     .icon-2 {
-      --simple-icon-color: #debe30;
+      --simple-icon-color: #00ffc8;
       --simple-icon-width: 50px;
       --simple-icon-height: 50px;
       position: relative;
       bottom: -50px;
     }
+
+    .details-collapse {
+      display: block;
+      --a11y-collapse-heading-background-color: #032340;
+      background-color: #032340;
+      color: #00ffc8;
+    }
+
+    .details-wrapper {
+      color: #FFFFFF;
+    }
+
+    .details-title {
+      font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+      font-size: 23px;
+      float: right;
+      color: #FFFFFF;
+    }
+
+    .details-text {
+      height: 50px;
+      width: 50px;
+    }
+
+    .details-video-text {
+      font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      padding-left: 20px;
+    }
+
+    .details-video-icon {
+      --simple-icon-color: #00ffc8;
+      --simple-icon-width: 40px;
+      --simple-icon-height: 40px;
+      margin-right: 10px;
+    }
+    
+    .details-reading-text {
+      font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      padding-left: 20px;
+    }
+
+    .details-reading-icon {
+      --simple-icon-color: #00ffc8;
+      --simple-icon-width: 40px;
+      --simple-icon-height: 40px;
+      margin-right: 10px;
+    }
+
+    .details-quiz-text {
+      font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      padding-left: 20px;
+    }
+
+    .details-quiz-icon {
+      --simple-icon-color: #00ffc8;
+      --simple-icon-width: 40px;
+      --simple-icon-height: 40px;
+      margin-right: 10px;
   `;
 
   constructor() {
@@ -137,12 +219,13 @@ class WeekElement extends LitElement {
     this.videoMinCount = '63';
     this.readingCount = '11';
     this.quizCount = '1';
+    this.detailsTitle = "See Details";
     this.opened = false;
   }
 
   render() {
     return html`
-      <div class="wrapper">
+    <div class="wrapper">
         <div class="left-stack">
           <p class="week-text">W E E K</p>
           <div class="week-number">${this.weekNumber}</div>
@@ -160,17 +243,27 @@ class WeekElement extends LitElement {
           <div class="lesson-title">${this.lessonText}</div>
           <div class="lesson-description">${this.lessonDescription}</div>
           <div class="table-row-2">
-            <simple-icon
-              class=" icon-2 table-cell"
-              icon="maps:layers"
-            ></simple-icon>
-            <div class="lesson-breakdown table-cell">
+            <simple-icon class="icon-2 table-cell" icon="maps:layers"></simple-icon>
+            <div slot="heading" class="lesson-breakdown table-cell">
               ${this.videoCount} videos (Total ${this.videoMinCount} min),
               ${this.readingCount} readings, ${this.quizCount} quiz(zes)
             </div>
           </div>
         </div>
-      </div>
+      <a11y-collapse class="details-collapse">
+      <p slot="heading" class="details-title">${this.detailsTitle}</p>
+        <div class="details-wrapper">
+          <div class="details-video-text"><simple-icon class="details-video-icon" icon="av:slow-motion-video"></simple-icon>${this.videoCount} Videos</div>
+            <div class="details-video-items">
+              <span>Placholder</span>
+            </div>
+            <hr>
+          <div class="details-reading-text"><simple-icon class="details-reading-icon" icon="chrome-reader-mode"></simple-icon>${this.readingCount} Readings</div>
+            <div class="details-reading-items"></div>
+            <hr>
+          <div class="details-quiz-text"><simple-icon class="details-quiz-icon" icon="assignment"></simple-icon>${this.quizCount} Practice exercise</div>
+        </div>
+      </a11y-collapse>
     `;
   }
 }

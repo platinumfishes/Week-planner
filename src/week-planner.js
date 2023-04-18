@@ -1,10 +1,11 @@
 import { html, css, LitElement } from 'lit';
+import "./week-element";
 
 export class WeekPlanner extends LitElement {
   static styles = css`
     :host {
       display: block;
-      padding: 25px;
+      padding: 30px;
       color: var(--week-planner-text-color, #000);
     }
   `;
@@ -16,18 +17,17 @@ export class WeekPlanner extends LitElement {
 
   constructor() {
     super();
-    this.header = 'Hey there';
-    this.counter = 5;
+    this.weekElementList = [];
   }
 
-  __increment() {
-    this.counter += 1;
-  }
+
 
   render() {
     return html`
-      <h2>${this.header} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
+      <week-element></week-element>
+      <week-element></week-element>
+      <week-element></week-element>
+      <week-element></week-element>
     `;
   }
 }
