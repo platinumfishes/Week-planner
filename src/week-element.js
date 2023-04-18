@@ -36,7 +36,7 @@ class WeekElement extends LitElement {
       width: 30%;
       height: 340px;
       text-align: center;
-      background-color: #e8e8e8;
+      background-color: #e7ffb9c9;
       margin: auto;
       vertical-align: middle;
     }
@@ -46,7 +46,7 @@ class WeekElement extends LitElement {
       float: right;
       width: 70%;
       height: 340px;
-      background-color: #e8e8e8;
+      background-color: #e7ffb9c9;
       text-align: left;
       margin: auto;
       vertical-align: middle;
@@ -54,10 +54,11 @@ class WeekElement extends LitElement {
 
     .hours-text {
       font-family: Futura, Trebuchet MS, Arial, sans-serif;
-      font-size: 28px;
+      font-size: 25px;
       font-weight: bold;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      padding-top: 30px;
+      padding-left: 10px;
+      color: #414141;
     }
 
     .lesson-title {
@@ -68,15 +69,19 @@ class WeekElement extends LitElement {
 
     .lesson-description {
       font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
-      font-size: 25px;
+      font-size: 20px;
+      font-weight: 550;
       margin-bottom: 20px;
     }
 
     .lesson-breakdown {
       font-family: Futura, Trebuchet MS, Arial, sans-serif;
-      font-size: 28px;
-      font-weight: bold;
+      font-size: 22px;
+      font-weight: light;
       margin-top: 60px;
+      padding-left: 10px;
+      position: relative;
+      bottom: -60px;
     }
 
     .week-text {
@@ -88,6 +93,34 @@ class WeekElement extends LitElement {
       font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
       font-size: 90px;
       margin-top: 20px;
+    }
+
+    .table-row-1 {
+      display: table-row;
+      padding-top: 20px;
+    }
+
+    .table-row-2 {
+      display: table-row;
+    }
+
+    .table-cell {
+      display: table-cell;
+    }
+
+    .icon-1 {
+      padding-top: 20px;
+      --simple-icon-color: #00ffc8;
+      --simple-icon-width: 50px;
+      --simple-icon-height: 50px;
+    }
+
+    .icon-2 {
+      --simple-icon-color: #debe30;
+      --simple-icon-width: 50px;
+      --simple-icon-height: 50px;
+      position: relative;
+      bottom: -50px;
     }
   `;
 
@@ -115,12 +148,26 @@ class WeekElement extends LitElement {
           <div class="week-number">${this.weekNumber}</div>
         </div>
         <div class="right-stack">
-          <div class="hours-text">${this.hours} hours to complete</div>
+          <div class="table-row-1">
+            <simple-icon
+              class=" icon-1 table-cell"
+              icon="image:timer"
+            ></simple-icon>
+            <div class="hours-text table-cell">
+              ${this.hours} hours to complete
+            </div>
+          </div>
           <div class="lesson-title">${this.lessonText}</div>
           <div class="lesson-description">${this.lessonDescription}</div>
-          <div class="lesson-breakdown">
-            ${this.videoCount} videos (Total ${this.videoMinCount} min),
-            ${this.readingCount} readings, ${this.quizCount} quiz(zes)
+          <div class="table-row-2">
+            <simple-icon
+              class=" icon-2 table-cell"
+              icon="maps:layers"
+            ></simple-icon>
+            <div class="lesson-breakdown table-cell">
+              ${this.videoCount} videos (Total ${this.videoMinCount} min),
+              ${this.readingCount} readings, ${this.quizCount} quiz(zes)
+            </div>
           </div>
         </div>
       </div>
