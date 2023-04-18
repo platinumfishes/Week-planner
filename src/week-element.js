@@ -9,8 +9,6 @@ class WeekElement extends LitElement {
   static properties = {
     weekNumber: { type: String },
     hours: { type: Number },
-    badgeTitle: { type: String },
-    badgeDescription: { type: String },
     activityArray: { type: Array },
     lessonText: { type: String },
     lessonDescription: { type: String },
@@ -210,8 +208,6 @@ class WeekElement extends LitElement {
     super();
     this.weekNumber = '1';
     this.hours = '2';
-    this.badgeTitle = 'Introduction';
-    this.badgeDescription = 'Why take this course?';
     this.activityArray = [];
     this.lessonText = 'Misconceptions about happiness';
     this.lessonDescription = 'What do we think will make us happy?';
