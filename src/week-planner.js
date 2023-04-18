@@ -12,7 +12,7 @@ export class WeekPlanner extends LitElement {
       padding: 30px;
       color: var(--week-planner-text-color, #000);
     }
-    
+
     .wrapper {
       display: block;
     }
@@ -42,15 +42,17 @@ export class WeekPlanner extends LitElement {
   }
 
   async updateWeekElements() {
-    const address = '../api/week-schedule.js';
+    const address = '../api/schedule.js';
     fetch(address).then((response) => {
         if (response.ok) {
+            console.log(response);
             return response.json()
         }
         return [];
     })
     .then((data) => {
         this.weekElementList = data;
+        console.log("Hello world 3!");
     });
 }
 
@@ -60,7 +62,6 @@ export class WeekPlanner extends LitElement {
                 ${this.weekElementList.map(classchar => html`
                 <div class="items">
                     <week-element weekNumber="${classchar.weekNumber}" hours="${classchar.hours}" activityArray="${classchar.activityArray}" lessonText="${classchar.lessonText}" lessonDescription="${classchar.lessonDescription}" detailstext="${classchar.detailstext}" videoCount="${classchar.videoCount}" videoMinCount="${classchar.videoMinCount}" readingCount="${classchar.readingCount}" quizCount="${classchar.quizCount}" detailsTitle="${classchar.detailsTitle}" opened="${classchar.opened}">
-                    <!-- slot room -->
                     </week-element>
                 <div>
                 `)}
