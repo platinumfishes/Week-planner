@@ -2,22 +2,6 @@ import { html, css, LitElement } from 'lit';
 import "./week-element";
 
 export class WeekPlanner extends LitElement {
-    static get tag() {
-    return 'week-planner';
-  }
-
-  static styles = css`
-    :host {
-      display: block;
-      padding: 30px;
-      color: var(--week-planner-text-color, #000);
-    }
-
-    .wrapper {
-      display: block;
-    }
-  `;
-
   static get properties() {
     return {
     header: { type: Array },
@@ -32,12 +16,72 @@ export class WeekPlanner extends LitElement {
     quizCount: { type: Number },
     detailsTitle: { type: String },
     opened: { type: Boolean },
+    weekElementList: { type: Array }
     } 
-  };
+  }
+
+    static get tag() {
+    return 'week-planner';
+  }
+
+static get styles() {
+  return css`
+    :host {
+      display: block;
+      padding: 30px;
+      color: var(--week-planner-text-color, #000);
+    }
+
+    .wrapper {
+      display: block;
+    }
+  `;
+}
+
 
   constructor() {
     super();
-    this.weekElementList = [];
+    this.weekElementList = [
+      {
+        "weekNumber" : '1',
+        "hours" : '2',
+        "activityArray" : [],
+        "lessonText" : 'Introduction',
+        "lessonDescription" : 'Why take this course?',
+        "videoCount" : '4',
+        "videoMinCount" : '13',
+        "readingCount" : '11',
+        "quizCount" : '0',
+        "detailsTitle" : "See Details",
+        "opened" : false
+    },
+    {
+        "weekNumber" : '2',
+        "hours" : '4',
+        "activityArray" : [],
+        "lessonText" : 'Misconceptions about happiness',
+        "lessonDescription" : 'What do we think will make us happy?',
+        "videoCount" : '7',
+        "videoMinCount" : '63',
+        "readingCount" : '3',
+        "quizCount" : '1',
+        "detailsTitle" : "Among Us",
+        "opened" : false
+    },
+    {
+        "weekNumber" : '3',
+        "hours" : '2',
+        "activityArray" : [],
+        "lessonText" : 'Why Our Expectations are so Bad',
+        "lessonDescription" : 'Why do we mispredict what makes us happy?',
+        "videoCount" : '8',
+        "videoMinCount" : '64',
+        "readingCount" : '3',
+        "quizCount" : '1',
+        "detailsTitle" : "See Details",
+        "opened" : false
+    }
+    ];
     this.updateWeekElements(); 
   }
 
@@ -52,16 +96,18 @@ export class WeekPlanner extends LitElement {
     })
     .then((data) => {
         this.weekElementList = data;
-        console.log("Hello world 3!");
     });
-}
+  }
 
   render() {
     return html`
             <div class="wrapper">
-                ${this.weekElementList.map(classchar => html`
+                ${this.weekElementList.map(week => html`
                 <div class="items">
-                    <week-element weekNumber="${classchar.weekNumber}" hours="${classchar.hours}" activityArray="${classchar.activityArray}" lessonText="${classchar.lessonText}" lessonDescription="${classchar.lessonDescription}" detailstext="${classchar.detailstext}" videoCount="${classchar.videoCount}" videoMinCount="${classchar.videoMinCount}" readingCount="${classchar.readingCount}" quizCount="${classchar.quizCount}" detailsTitle="${classchar.detailsTitle}" opened="${classchar.opened}">
+                    <week-element weekNumber="${week.weekNumber}" hours="${week.hours}" activityArray="${week.activityArray}" lessonText="${week.lessonText}" lessonDescription="${week.lessonDescription}" detailstext="${week.detailstext}" videoCount="${week.videoCount}" videoMinCount="${week.videoMinCount}" readingCount="${week.readingCount}" quizCount="${week.quizCount}" detailsTitle="${week.detailsTitle}" opened="${week.opened}">
+                    <!-- <div slot="Videos"></div>
+                    <div slot="Readings"></div>
+                    <div slot="Practice"></div> -->
                     </week-element>
                 <div>
                 `)}

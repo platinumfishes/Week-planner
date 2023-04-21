@@ -3,7 +3,7 @@ import '@lrnwebcomponents/simple-icon/simple-icon.js';
 import '@lrnwebcomponents/simple-icon/lib/simple-icons.js';
 import "@lrnwebcomponents/a11y-collapse/a11y-collapse.js";
 import "@lrnwebcomponents/a11y-collapse/lib/a11y-collapse-group.js";
-import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
+//6import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 class WeekElement extends LitElement {
   static properties = {
@@ -18,6 +18,8 @@ class WeekElement extends LitElement {
     quizCount: { type: Number },
     detailsTitle: { type: String },
     opened: { type: Boolean },
+    videoItem1: { type: String },
+    videoMin1: { type: Number },
   };
 
   static styles = css`
@@ -28,10 +30,7 @@ class WeekElement extends LitElement {
       color: black;
       font-weight: 400;
       vertical-align: middle;
-      background-color: black;
-    }
-
-    div {
+      background-color: #0072CE;
     }
 
     .wrapper {
@@ -40,7 +39,7 @@ class WeekElement extends LitElement {
       margin-left: auto;
       margin-right: auto;
       vertical-align: middle;
-      margin-bottom: 30px;
+      margin-bottom: -15px;
     }
 
     .left-stack {
@@ -146,6 +145,11 @@ class WeekElement extends LitElement {
       color: #00ffc8;
     }
 
+    .details-collapse:hover {
+      --a11y-collapse-heading-background-color: #00ffc8;
+      color: #032340;
+    }
+
     .details-wrapper {
       color: #FFFFFF;
     }
@@ -217,6 +221,8 @@ class WeekElement extends LitElement {
     this.quizCount = '1';
     this.detailsTitle = "See Details";
     this.opened = false;
+    this.videoItem1 = 'Hi, what is life';
+    this.videoMin1 = '8';
   }
 
   render() {
@@ -246,12 +252,11 @@ class WeekElement extends LitElement {
             </div>
           </div>
         </div>
-      <a11y-collapse class="details-collapse">
+      <a11y-collapse heading-button class="details-collapse">
       <p slot="heading" class="details-title">${this.detailsTitle}</p>
         <div class="details-wrapper">
           <div class="details-video-text"><simple-icon class="details-video-icon" icon="av:slow-motion-video"></simple-icon>${this.videoCount} Videos</div>
             <div class="details-video-items">
-              <span>Placholder</span>
             </div>
             <hr>
           <div class="details-reading-text"><simple-icon class="details-reading-icon" icon="chrome-reader-mode"></simple-icon>${this.readingCount} Readings</div>

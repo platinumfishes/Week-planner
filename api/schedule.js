@@ -1,5 +1,5 @@
-export default async function handler(req, res) {
-    const weekElementList = [
+export default async function handler(request, res) {
+    const roster = [
         {
             "weekNumber" : '1',
             "hours" : '2',
@@ -23,6 +23,19 @@ export default async function handler(req, res) {
             "videoMinCount" : '63',
             "readingCount" : '3',
             "quizCount" : '1',
+            "detailsTitle" : "Among Us",
+            "opened" : false
+        },
+        {
+            "weekNumber" : '3',
+            "hours" : '2',
+            "activityArray" : [],
+            "lessonText" : 'Why Our Expectations are so Bad',
+            "lessonDescription" : 'Why do we mispredict what makes us happy?',
+            "videoCount" : '8',
+            "videoMinCount" : '64',
+            "readingCount" : '3',
+            "quizCount" : '1',
             "detailsTitle" : "See Details",
             "opened" : false
         },
@@ -33,5 +46,5 @@ export default async function handler(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT");
     res.setHeader("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
-    res.json(weekElementList);
+    res.json(roster);
   }
