@@ -37,5 +37,31 @@
     "quizCount" : "1",
     "detailsTitle" : "See Details",
     "opened" : false
+},
+{
+    "weekNumber" : "2",
+    "hours" : "4",
+    "activityArray" : [],
+    "lessonText" : "Misconceptions about happiness",
+    "lessonDescription" : "What do we think will make us happy?",
+    "videoCount" : "7",
+    "videoMinCount" : "63",
+    "readingCount" : "3",
+    "quizCount" : "1",
+    "detailsTitle" : "See Details",
+    "opened" : false
+},
+{
+    "weekNumber" : "2",
+    "hours" : "4",
+    "activityArray" : [],
+    "lessonText" : "Misconceptions about happiness",
+    "lessonDescription" : "What do we think will make us happy?",
+    "videoCount" : "7",
+    "videoMinCount" : "63",
+    "readingCount" : "3",
+    "quizCount" : "1",
+    "detailsTitle" : "See Details",
+    "opened" : false
 }
 ]

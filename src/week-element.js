@@ -4,6 +4,8 @@ import '@lrnwebcomponents/simple-icon/lib/simple-icons.js';
 import "@lrnwebcomponents/a11y-collapse/a11y-collapse.js";
 import "@lrnwebcomponents/a11y-collapse/lib/a11y-collapse-group.js";
 import "./details-video";
+import "./details-reading";
+import "./details-quiz";
 //6import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 class WeekElement extends LitElement {
@@ -248,7 +250,7 @@ class WeekElement extends LitElement {
 
   render() {
     return html`
-    
+
       <ul>
       ${this.activityArray.map(activity => html `
         <li>${activity.type}</li>

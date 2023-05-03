@@ -3,7 +3,39 @@ export default async function handler(request, res) {
         {
             "weekNumber" : '1',
             "hours" : '2',
-            "activityArray" : [],
+            "activityArray" : [
+                {
+                    "type" : 'video',
+                    "text" : 'How to play among us',
+                    "length" : '5'
+                },
+                {
+                    "type" : 'video',
+                    "text" : 'Imposter from amongus tutorial',
+                    "length" : '7'
+                },
+                {
+                    "type" : 'video',
+                    "text" : 'How to be a crewmate in amongus',
+                    "length" : '8'
+                },
+                {
+                    "type" : 'reading',
+                    "text" : 'Reading 1',
+                },
+                {
+                    "type" : 'reading',
+                    "text" : 'Reading 2',
+                },
+                {
+                    "type" : 'reading',
+                    "text" : 'Reading 3',
+                },
+                {
+                    "type" : 'quiz',
+                    "text" : 'Quiz 1',
+                }
+            ],
             "lessonText" : 'Introduction',
             "lessonDescription" : 'Why take this course?',
             "videoCount" : '4',

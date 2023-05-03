@@ -1,21 +1,15 @@
 import { html, css, LitElement } from 'lit';
+import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 import "./week-element";
 
-export class WeekPlanner extends LitElement {
+export class WeekPlanner extends IntersectionObserverMixin(LitElement) {
   static get properties() {
+    let pogs = {};
+    if (super.properties) {
+      pogs = super.properties;
+    }
     return {
-    header: { type: Array },
-    weekNumber: { type: String },
-    hours: { type: Number },
-    activityArray: { type: Array },
-    lessonText: { type: String },
-    lessonDescription: { type: String },
-    videoCount: { type: Number },
-    videoMinCount: { type: Number },
-    readingCount: { type: Number },
-    quizCount: { type: Number },
-    detailsTitle: { type: String },
-    opened: { type: Boolean },
+      ...pogs,
     weekElementList: { type: Array }
     } 
   }
@@ -38,14 +32,45 @@ static get styles() {
   `;
 }
 
-
   constructor() {
     super();
     this.weekElementList = [
       {
         "weekNumber" : '1',
         "hours" : '2',
-        "activityArray" : [],
+        "activityArray" : [
+          {
+            "type" : 'video',
+            "text" : 'How to play among us',
+            "length" : '5'
+        },
+        {
+            "type" : 'video',
+            "text" : 'Imposter from amongus tutorial',
+            "length" : '7'
+        },
+        {
+            "type" : 'video',
+            "text" : 'How to be a crewmate in amongus',
+            "length" : '8'
+        },
+        {
+            "type" : 'reading',
+            "text" : 'Reading 1',
+        },
+        {
+            "type" : 'reading',
+            "text" : 'Reading 2',
+        },
+        {
+            "type" : 'reading',
+            "text" : 'Reading 3',
+        },
+        {
+            "type" : 'quiz',
+            "text" : 'Quiz 1',
+        }
+        ],
         "lessonText" : 'Introduction',
         "lessonDescription" : 'Why take this course?',
         "videoCount" : '4',
@@ -80,7 +105,7 @@ static get styles() {
         "quizCount" : '1',
         "detailsTitle" : "See Details",
         "opened" : false
-    }
+    },
     ];
     this.updateWeekElements(); 
   }
@@ -90,7 +115,7 @@ static get styles() {
     fetch(address).then((response) => {
         if (response.ok) {
             console.log(response);
-            return response.json()
+            return response.json();
         }
         return [];
     })
@@ -101,18 +126,17 @@ static get styles() {
 
   render() {
     return html`
+    ${this.elementVisible ? html`
+
             <div class="wrapper">
                 ${this.weekElementList.map(week => html`
                 <div class="items">
                     <week-element weekNumber="${week.weekNumber}" hours="${week.hours}" activityArray="${week.activityArray}" lessonText="${week.lessonText}" lessonDescription="${week.lessonDescription}" detailstext="${week.detailstext}" videoCount="${week.videoCount}" videoMinCount="${week.videoMinCount}" readingCount="${week.readingCount}" quizCount="${week.quizCount}" detailsTitle="${week.detailsTitle}" opened="${week.opened}">
-                    <!-- <div slot="Videos"></div>
-                    <div slot="Readings"></div>
-                    <div slot="Practice"></div> -->
                     </week-element>
                 <div>
                 `)}
             </div>
-    `;
+    `:``}`
   }
 }
 
