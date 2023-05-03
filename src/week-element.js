@@ -212,6 +212,10 @@ class WeekElement extends LitElement {
       --simple-icon-width: 40px;
       --simple-icon-height: 40px;
       margin-right: 10px;
+
+    .unordered1 {
+      font-size: 20px;
+    }
   `;
 
   constructor() {
@@ -248,18 +252,10 @@ class WeekElement extends LitElement {
     this.opened = !this.opened;
   }
 
-
-
   render() {
     return html`
 
-    <ul>
-      ${this.activityArray.map(activity => html`
-        <li>${activity.type}</li>
-        <li>${activity.text}</li>
-        <li>${activity.length}</li>
-      `)}
-    </ul>
+    
         
     <div class="wrapper">
         <div class="left-stack">
@@ -290,7 +286,16 @@ class WeekElement extends LitElement {
       <button slot="heading" class="details-title">${this.detailsTitle}</button>
         <div class="details-wrapper">
           <div class="details-video-text"><simple-icon class="details-video-icon" icon="av:slow-motion-video"></simple-icon>${this.videoCount} Videos</div>
-            <div class="details-video-items"></div>
+            <div class="details-video-items">
+              <ul class="unordered1">
+                ${this.activityArray.map(activity => html`
+                <li>${activity.type}</li>
+                <li>${activity.text}</li>
+                <li>${activity.length}</li>
+                `)}
+              </ul>
+          
+          </div>
             <hr>
           <div class="details-reading-text"><simple-icon class="details-reading-icon" icon="chrome-reader-mode"></simple-icon>${this.readingCount} Readings</div>
             <div class="details-reading-items"></div>
