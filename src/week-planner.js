@@ -38,70 +38,146 @@ static get styles() {
       {
         "weekNumber" : '1',
         "hours" : '2',
-        "activityArray" : [
-          {
-            "type" : 'video',
-            "text" : 'How to play among us',
+        "videos" : [
+        {
+            "text" : 'How to play among us (gamers only)',
             "length" : '5'
         },
         {
-            "type" : 'video',
-            "text" : 'Imposter from amongus tutorial',
+            "text" : 'Imposter from among us epic tutorial',
             "length" : '7'
         },
         {
-            "type" : 'video',
-            "text" : 'How to be a crewmate in amongus',
+            "text" : 'How to be an efficient crewmate in among us',
             "length" : '8'
         },
         {
-            "type" : 'reading',
-            "text" : 'Reading 1',
+            "text" : 'The history of among us',
+            "length" : '6'
+        },
+                  ],
+        "readings" : [
+        {
+            "text" : 'Among us bible 1',
         },
         {
-            "type" : 'reading',
-            "text" : 'Reading 2',
+            "text" : 'Among us bible 2',
         },
         {
-            "type" : 'reading',
-            "text" : 'Reading 3',
-        },
-        {
-            "type" : 'quiz',
-            "text" : 'Quiz 1',
+            "text" : 'Among us bible 3',
         }
-        ],
-        "lessonText" : 'Introduction',
-        "lessonDescription" : 'Why take this course?',
+                  ],
+        "quizzes" : [
+        {
+            "text" : 'Sussy amogus quiz',
+        }
+                  ],
+        "lessonText" : 'Introduction to Among Us',
+        "lessonDescription" : 'An all encompassing course on the hit video-game, Among us',
         "videoCount" : '4',
-        "videoMinCount" : '13',
-        "readingCount" : '11',
-        "quizCount" : '0',
-        "detailsTitle" : "See Details",
+        "videoMinCount" : '26',
+        "readingCount" : '3',
+        "quizCount" : '1',
+        "detailsTitle" : "Among us",
         "opened" : false
     },
     {
         "weekNumber" : '2',
         "hours" : '4',
-        "activityArray" : [],
-        "lessonText" : 'Misconceptions about happiness',
-        "lessonDescription" : 'What do we think will make us happy?',
-        "videoCount" : '7',
-        "videoMinCount" : '63',
+        "videos" : [
+            {
+                "text" : 'Why does Among us, the best game of all time, get made fun of?',
+                "length" : '6'
+            },
+            {
+                "text" : 'What gamers get wrong about venting as Imposter',
+                "length" : '8'
+            },
+
+                      ],
+            "readings" : [
+            {
+                "text" : 'Book of OG venting techniques',
+            },
+            {
+                "text" : 'Essay on why Among us should be game of the epoch',
+            },
+            {
+                "text" : 'Among us 2 potential leak?',
+            }
+                      ],
+            "quizzes" : [
+            {
+                "text" : 'Among us venting strategies examination',
+            },
+            {
+                "text" : 'Comprehensive examination on Among us maps',
+            }
+                      ],
+        "lessonText" : 'Misconceptions about Among us',
+        "lessonDescription" : 'What do we think will make us effective venters?',
+        "videoCount" : '2',
+        "videoMinCount" : '14',
         "readingCount" : '3',
-        "quizCount" : '1',
-        "detailsTitle" : "Among Us",
+        "quizCount" : '2',
+        "detailsTitle" : "See Details",
         "opened" : false
     },
     {
         "weekNumber" : '3',
-        "hours" : '2',
-        "activityArray" : [],
-        "lessonText" : 'Why Our Expectations are so Bad',
-        "lessonDescription" : 'Why do we mispredict what makes us happy?',
+        "hours" : '6',
+        "videos" : [
+            {
+                "text" : 'Introductory Competitive Among us concepts',
+                "length" : '14'
+            },
+            {
+                "text" : 'POV: Competitive Imposter gameplay',
+                "length" : '11'
+            },
+            {
+                "text" : 'POV: Competitive Crewmate gameplay',
+                "length" : '12'
+            },
+            {
+                "text" : 'VOD review for december Among us tournament by Team Liquid',
+                "length" : '11'
+            },
+            {
+                "text" : 'Execution of advanced Among us mechanics',
+                "length" : '15'
+            },
+            {
+                "text" : 'The psychology of a competitive Imposter',
+                "length" : '7'
+            },
+            {
+                "text" : 'Things to look out for as a competitive Crewmate',
+                "length" : '8'
+            },
+            {
+                "text" : 'How to join the competitive Among us league',
+                "length" : '8'
+            },
+                      ],
+            "readings" : [
+            {
+                "text" : 'CompTIA Imposter advanced study guide',
+            },
+            {
+                "text" : 'CISSP Crewmate Certification official study guide',
+            }
+                      ],
+            "quizzes" : [
+            {
+                "text" : 'CISSP Crewmate Certification Exam',
+            }
+                      ],
+        "lessonText" : 'Intro to Competitive Among us',
+        "lessonDescription" : 'For those seeking to take the next big step into being sussy amogus',
         "videoCount" : '8',
-        "videoMinCount" : '64',
-        "readingCount" : '3',
+        "videoMinCount" : '86',
+        "readingCount" : '2',
         "quizCount" : '1',
         "detailsTitle" : "See Details",
         "opened" : false
@@ -131,7 +207,7 @@ static get styles() {
         <div class="wrapper">
             ${this.weekElementList.map(week => html`
             <div class="items">
-                <week-element weekNumber="${week.weekNumber}" hours="${week.hours}" .activityArray="${week.activityArray}" lessonText="${week.lessonText}" lessonDescription="${week.lessonDescription}" detailstext="${week.detailstext}" videoCount="${week.videoCount}" videoMinCount="${week.videoMinCount}" readingCount="${week.readingCount}" quizCount="${week.quizCount}" detailsTitle="${week.detailsTitle}" opened="${week.opened}">
+                <week-element weekNumber="${week.weekNumber}" hours="${week.hours}" .videos="${week.videos}" .quizzes="${week.quizzes}" .readings="${week.readings}" lessonText="${week.lessonText}" lessonDescription="${week.lessonDescription}" detailstext="${week.detailstext}" videoCount="${week.videoCount}" videoMinCount="${week.videoMinCount}" readingCount="${week.readingCount}" quizCount="${week.quizCount}" detailsTitle="${week.detailsTitle}" opened="${week.opened}">
                 </week-element>
             <div>
             `)}

@@ -22,17 +22,18 @@ class WeekElement extends LitElement {
     opened: { type: Boolean },
     videoItem1: { type: String },
     videoMin1: { type: Number },
-    type: { type: String },
     text: { type: String },
-    length: { type: Number }
+    length: { type: Number },
+    videos: { type: String },
+    readings: { type: String },
+    quizzes: { type: String },
   };
 
   static styles = css`
     :host {
       display: block;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 48px;
-      color: black;
+      font-size: 28px;
       font-weight: 400;
       vertical-align: middle;
       background-color: #0072CE;
@@ -212,20 +213,15 @@ class WeekElement extends LitElement {
       --simple-icon-width: 40px;
       --simple-icon-height: 40px;
       margin-right: 10px;
-
-    .unordered1 {
-      font-size: 20px;
-    }
   `;
 
   constructor() {
     super();
     this.videos = [];
     this.readings = [];
-    this.exercises = [];
+    this.quizzes = [];
     this.weekNumber = '1';
     this.hours = '2';
-    this.activityArray = [];
     this.lessonText = 'Misconceptions about happiness';
     this.lessonDescription = 'What do we think will make us happy?';
     this.videoCount = '8';
@@ -238,7 +234,6 @@ class WeekElement extends LitElement {
     this.videoItem1 = 'Hi, what is life';
     this.videoMin1 = '8';
     this.toggleEvent()
-    this.type = '';
     this.text = 'hi';
     this.length = '';
   }
@@ -287,21 +282,30 @@ class WeekElement extends LitElement {
         <div class="details-wrapper">
           <div class="details-video-text"><simple-icon class="details-video-icon" icon="av:slow-motion-video"></simple-icon>${this.videoCount} Videos</div>
             <div class="details-video-items">
-              <ul class="unordered1">
-                ${this.activityArray.map(activity => html`
-                <li>${activity.type}</li>
-                <li>${activity.text}</li>
-                <li>${activity.length}</li>
+              <ul class="unorderedVideos">
+                ${this.videos.map(activity => html`
+                <li class="unorderedVideos">${activity.text} : ${activity.length} minutes</li>
                 `)}
               </ul>
-          
           </div>
             <hr>
           <div class="details-reading-text"><simple-icon class="details-reading-icon" icon="chrome-reader-mode"></simple-icon>${this.readingCount} Readings</div>
-            <div class="details-reading-items"></div>
+            <div class="details-reading-items">
+              <ul class="unorderedReadings">
+                ${this.readings.map(activity => html`
+                <li class="unorderedReadings">${activity.text}</li>
+                `)}
+              </ul>
+            </div>
             <hr>
           <div class="details-quiz-text"><simple-icon class="details-quiz-icon" icon="assignment"></simple-icon>${this.quizCount} Practice exercise</div>
-          <div class="details-quiz-items"></div>
+          <div class="details-quiz-items">
+              <ul class="unorderedQuizzes">
+                ${this.quizzes.map(activity => html`
+                <li class="unorderedQuizzes">${activity.text}</li>
+                `)}
+              </ul>
+          </div>
         </div>
       </a11y-collapse>
     `;
