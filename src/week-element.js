@@ -213,6 +213,18 @@ class WeekElement extends LitElement {
       --simple-icon-width: 40px;
       --simple-icon-height: 40px;
       margin-right: 10px;
+    }
+
+    a:link,
+    a:visited {
+      color: #00ffc8;
+      background-color: transparent;
+    }
+    a:hover {
+      color: white;
+      background-color: transparent;
+    }
+}
   `;
 
   constructor() {
@@ -236,6 +248,7 @@ class WeekElement extends LitElement {
     this.toggleEvent()
     this.text = 'hi';
     this.length = '';
+    this.baited = 'https://www.youtube.com/watch?v=0Gyj-SV3uMQ';
   }
 
   toggleEvent(e) {
@@ -282,27 +295,27 @@ class WeekElement extends LitElement {
         <div class="details-wrapper">
           <div class="details-video-text"><simple-icon class="details-video-icon" icon="av:slow-motion-video"></simple-icon>${this.videoCount} Videos</div>
             <div class="details-video-items">
-              <ul class="unorderedVideos">
+              <ul>
                 ${this.videos.map(activity => html`
-                <li class="unorderedVideos">${activity.text} : ${activity.length} minutes</li>
+                <a href="${this.baited}"><li>${activity.text} : ${activity.length} minutes</li></a>
                 `)}
               </ul>
           </div>
             <hr>
           <div class="details-reading-text"><simple-icon class="details-reading-icon" icon="chrome-reader-mode"></simple-icon>${this.readingCount} Readings</div>
             <div class="details-reading-items">
-              <ul class="unorderedReadings">
+              <ul>
                 ${this.readings.map(activity => html`
-                <li class="unorderedReadings">${activity.text}</li>
+                <li>${activity.text}</li>
                 `)}
               </ul>
             </div>
             <hr>
           <div class="details-quiz-text"><simple-icon class="details-quiz-icon" icon="assignment"></simple-icon>${this.quizCount} Practice exercise</div>
           <div class="details-quiz-items">
-              <ul class="unorderedQuizzes">
+              <ul>
                 ${this.quizzes.map(activity => html`
-                <li class="unorderedQuizzes">${activity.text}</li>
+                <li>${activity.text}</li>
                 `)}
               </ul>
           </div>
