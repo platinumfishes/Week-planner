@@ -128,14 +128,23 @@ static get styles() {
     return html`
     ${this.elementVisible ? html`
 
-            <div class="wrapper">
-                ${this.weekElementList.map(week => html`
-                <div class="items">
-                    <week-element weekNumber="${week.weekNumber}" hours="${week.hours}" activityArray="${week.activityArray}" lessonText="${week.lessonText}" lessonDescription="${week.lessonDescription}" detailstext="${week.detailstext}" videoCount="${week.videoCount}" videoMinCount="${week.videoMinCount}" readingCount="${week.readingCount}" quizCount="${week.quizCount}" detailsTitle="${week.detailsTitle}" opened="${week.opened}">
-                    </week-element>
-                <div>
-                `)}
-            </div>
+        <div class="wrapper">
+            ${this.weekElementList.map(week => html`
+            <div class="items">
+                <week-element weekNumber="${week.weekNumber}" hours="${week.hours}" activityArray="${week.activityArray}" lessonText="${week.lessonText}" lessonDescription="${week.lessonDescription}" detailstext="${week.detailstext}" videoCount="${week.videoCount}" videoMinCount="${week.videoMinCount}" readingCount="${week.readingCount}" quizCount="${week.quizCount}" detailsTitle="${week.detailsTitle}" opened="${week.opened}">
+                </week-element>
+            <div>
+            `)}
+        </div>
+
+      <ul>
+      ${this.activityArray.map(activity => html `
+        <li>${activity.type}</li>
+        <li>${activity.text}</li>
+        <li>${activity.length}</li>
+      `)}
+      </ul>
+
     `:``}`
   }
 }
