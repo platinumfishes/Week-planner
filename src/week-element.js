@@ -3,6 +3,7 @@ import '@lrnwebcomponents/simple-icon/simple-icon.js';
 import '@lrnwebcomponents/simple-icon/lib/simple-icons.js';
 import "@lrnwebcomponents/a11y-collapse/a11y-collapse.js";
 import "@lrnwebcomponents/a11y-collapse/lib/a11y-collapse-group.js";
+import "./details-video";
 //6import { IntersectionObserverMixin } from "@lrnwebcomponents/intersection-element/lib/IntersectionObserverMixin.js";
 
 class WeekElement extends LitElement {
@@ -159,6 +160,7 @@ class WeekElement extends LitElement {
       font-size: 23px;
       float: right;
       color: #FFFFFF;
+      background-color: #032340;
     }
 
     .details-text {
@@ -210,6 +212,9 @@ class WeekElement extends LitElement {
 
   constructor() {
     super();
+    this.videos = [];
+    this.readings = [];
+    this.exercises = [];
     this.weekNumber = '1';
     this.hours = '2';
     this.activityArray = [];
@@ -220,13 +225,38 @@ class WeekElement extends LitElement {
     this.readingCount = '11';
     this.quizCount = '1';
     this.detailsTitle = "See Details";
+    this.disabled = false;
     this.opened = false;
     this.videoItem1 = 'Hi, what is life';
     this.videoMin1 = '8';
+    this.toggleEvent()
+    this.type = '';
+    this.text = 'hi';
+    this.length = '';
   }
+
+  toggleEvent(e) {
+    console.log(this.opened);
+    /* const state = this.shadowRoot.querySelector('details-collapse').getAttribute('expanded') === '' ? true: false; */
+  }
+
+  clickEvent(e) {
+    this.opened = !this.opened;
+  }
+
+
 
   render() {
     return html`
+    
+      <ul>
+      ${this.activityArray.map(activity => html `
+        <li>${activity.type}</li>
+        <li>${activity.text}</li>
+        <li>${activity.length}</li>
+      `)}
+      </ul>
+        
     <div class="wrapper">
         <div class="left-stack">
           <p class="week-text">W E E K</p>
@@ -242,7 +272,7 @@ class WeekElement extends LitElement {
               ${this.hours} hours to complete
             </div>
           </div>
-          <div class="lesson-title">${this.lessonText}</div>
+          <div class="lesson-title">${this.lessonText}</div>  
           <div class="lesson-description">${this.lessonDescription}</div>
           <div class="table-row-2">
             <simple-icon class="icon-2 table-cell" icon="maps:layers"></simple-icon>
@@ -252,17 +282,17 @@ class WeekElement extends LitElement {
             </div>
           </div>
         </div>
-      <a11y-collapse heading-button class="details-collapse">
-      <p slot="heading" class="details-title">${this.detailsTitle}</p>
+      <a11y-collapse heading-button .open="${this.opened}" @toggle="${this.toggleEvent}" @click="${this.clickEvent}" class="details-collapse">
+      <button slot="heading" class="details-title">${this.detailsTitle}</button>
         <div class="details-wrapper">
           <div class="details-video-text"><simple-icon class="details-video-icon" icon="av:slow-motion-video"></simple-icon>${this.videoCount} Videos</div>
-            <div class="details-video-items">
-            </div>
+            <div class="details-video-items"></div>
             <hr>
           <div class="details-reading-text"><simple-icon class="details-reading-icon" icon="chrome-reader-mode"></simple-icon>${this.readingCount} Readings</div>
             <div class="details-reading-items"></div>
             <hr>
           <div class="details-quiz-text"><simple-icon class="details-quiz-icon" icon="assignment"></simple-icon>${this.quizCount} Practice exercise</div>
+          <div class="details-quiz-items"></div>
         </div>
       </a11y-collapse>
     `;
