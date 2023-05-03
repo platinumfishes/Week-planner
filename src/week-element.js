@@ -252,6 +252,14 @@ class WeekElement extends LitElement {
 
   render() {
     return html`
+
+    <ul>
+      ${this.activityArray.map(activity => html`
+        <li>${activity.type}</li>
+        <li>${activity.text}</li>
+        <li>${activity.length}</li>
+      `)}
+    </ul>
         
     <div class="wrapper">
         <div class="left-stack">
