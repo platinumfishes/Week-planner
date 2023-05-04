@@ -3,6 +3,7 @@ import '@lrnwebcomponents/simple-icon/simple-icon.js';
 import '@lrnwebcomponents/simple-icon/lib/simple-icons.js';
 import "@lrnwebcomponents/a11y-collapse/a11y-collapse.js";
 import "@lrnwebcomponents/a11y-collapse/lib/a11y-collapse-group.js";
+import { A11yCollapse } from '@lrnwebcomponents/a11y-collapse/a11y-collapse.js';
 
 class WeekElement extends LitElement {
   static properties = {
@@ -250,17 +251,29 @@ class WeekElement extends LitElement {
 
   toggleEvent(e) {
     console.log(this.opened);
-    /* const state = this.shadowRoot.querySelector('details-collapse').getAttribute('expanded') === '' ? true: false; */
   }
 
   clickEvent(e) {
     this.opened = !this.opened;
   }
 
+  updated(changedProperties){
+    changedProperties.forEach((oldValue, propName)=>{
+      if(propName === "opened"){
+        this.dispatchEvent(new CustomEvent('opened-changed', {
+          composed: true,
+          bubbles: true,
+          cancelable: false,
+          detail:{
+            value: this[propName]
+          }
+        }));
+      }
+    });
+  }
+
   render() {
     return html`
-
-    
         
     <div class="wrapper">
         <div class="left-stack">
